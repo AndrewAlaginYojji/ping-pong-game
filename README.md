@@ -1,5 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Run the application locally
+1. Clone the repo
+2. npm i
+3. npm start
+4. Enjoy the game :)
+
 ## Available Scripts
 
 In the project directory, you can run:

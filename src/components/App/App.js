@@ -21,7 +21,7 @@ class App extends Component {
       Height = gameHeight,
       ctx = this.canvas.getContext("2d"),
       fps = 60,
-      paddleWidth = 100;
+      paddleWidth = Height > 800 ? 200 : 100;
     let ballY = Height / 2,
       ballX = Width / 2,
       ballRadius = 6,
@@ -29,7 +29,7 @@ class App extends Component {
       ballSpeedX = Height / 75;
     let paddle1Y = Height / 2 - paddleWidth / 2,
       paddle2Y = Height / 2 - paddleWidth / 2,
-      paddleSpeed = 6;
+      paddleSpeed = Height > 800 ? 9 : 6;
 
     function KeyListener() {
       this.pressedKeys = [];
