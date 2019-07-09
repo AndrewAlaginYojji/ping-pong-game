@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './style.css';
-import $ from "jquery";
 
 let gameWidth = document.documentElement.clientWidth,
   gameHeight = document.documentElement.clientHeight;
@@ -12,8 +11,8 @@ let player1Score = 0,
 
 class App extends Component {
   componentDidMount() {
-    $(".buttonRight").hide();
-    $("#butt2").hide();
+    this.btnRight.style.display = 'none';
+    this.butt2.style.display = 'none';
     this.update()
   }
   update() {
@@ -183,22 +182,22 @@ class App extends Component {
       });
     };
     // trigger 2 monkeys
-    $("#butt1").click(() => {
+    this.butt1.addEventListener('click' ,() => {
       ballY = Height / 2;
       ballX = Width / 2;
       GameOver();
       monkey = true;
-      $(this).hide();
-      $("#butt2").show();
-      $(".buttonRight").show();
+      this.butt1.style.display = 'none';
+      this.butt2.style.display = 'initial';
+      this.btnRight.style.display = 'initial';
     });
     // trigger AI
-    $("#butt2").click(() => {
+    this.butt2.addEventListener('click' ,() => {
       GameOver();
       monkey = false;
-      $(this).hide();
-      $("#butt1").show();
-      $(".buttonRight").hide();
+      this.butt2.style.display = 'none';
+      this.butt1.style.display = 'initial';
+      this.btnRight.style.display = 'none';
     });
     // to block automatic start
     GameOver();
