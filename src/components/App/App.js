@@ -50,16 +50,16 @@ class App extends Component {
         if (e.keyCode === keyCode) callback(e);
       });
     };
-    var keys = new KeyListener();
+    const keys = new KeyListener();
 
-    var reset = function() {
+    const reset = function() {
       ballY = Height / 2;
       ballX = Width / 2;
       ballSpeedX = -ballSpeedX;
       ballSpeedY = 0;
     };
     // draw everything on screen
-    var drawAll = function() {
+    const drawAll = function() {
       // screen
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, Width, Height);
@@ -85,7 +85,7 @@ class App extends Component {
       ctx.fill();
     };
     // move stuff begore drawing again
-    var moveAll = function() {
+    const moveAll = function() {
       // ball movement
       ballX += ballSpeedX;
       ballY += ballSpeedY;
@@ -99,14 +99,14 @@ class App extends Component {
         ) {
           ballSpeedX = -ballSpeedX;
           let deltaY = ballY - (paddle2Y + paddleWidth / 2);
-          ballSpeedY = deltaY * 0.35;
+          ballSpeedY = deltaY * 0.2;
         } else if (
           ballX < Width / 2 &&
           (ballY >= paddle1Y && ballY <= paddle1Y + paddleWidth)
         ) {
           ballSpeedX = -ballSpeedX;
           let deltaY = ballY - (paddle1Y + paddleWidth / 2);
-          ballSpeedY = deltaY * 0.35;
+          ballSpeedY = deltaY * 0.2;
         } else {
           if (ballX < Width / 2) {
             player2Score++;
@@ -158,7 +158,7 @@ class App extends Component {
       }
     };
     // draw default if changing game type, else save last draw
-    var GameOver = function() {
+    const GameOver = function() {
       ballSpeedY = 0;
       paddle1Y = Height / 2 - paddleWidth / 2;
       paddle2Y = Height / 2 - paddleWidth / 2;
