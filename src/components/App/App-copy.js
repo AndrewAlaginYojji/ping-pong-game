@@ -33,10 +33,10 @@ class App extends Component {
 
     function KeyListener() {
       this.pressedKeys = [];
-      this.keydown = (e) => {
+      this.keydown = function(e) {
         this.pressedKeys[e.keyCode] = true;
       };
-      this.keyup = (e) => {
+      this.keyup = function(e) {
         this.pressedKeys[e.keyCode] = false;
       };
       document.addEventListener("keydown", this.keydown.bind(this));
@@ -46,20 +46,20 @@ class App extends Component {
       return this.pressedKeys[key] ? true : false;
     };
     KeyListener.prototype.addKeyPressListener = function(keyCode, callback) {
-      document.addEventListener("keypress", (e) => {
+      document.addEventListener("keypress", function(e) {
         if (e.keyCode === keyCode) callback(e);
       });
     };
     const keys = new KeyListener();
 
-    const reset = () => {
+    const reset = function() {
       ballY = Height / 2;
       ballX = Width / 2;
       ballSpeedX = -ballSpeedX;
       ballSpeedY = 0;
     };
     // draw everything on screen
-    const drawAll = () => {
+    const drawAll = function() {
       // screen
       ctx.fillStyle = "#333";
       ctx.fillRect(0, 0, Width, Height);
@@ -85,7 +85,7 @@ class App extends Component {
       ctx.fill();
     };
     // move stuff begore drawing again
-    const moveAll = () => {
+    const moveAll = function() {
       // ball movement
       ballX += ballSpeedX;
       ballY += ballSpeedY;
@@ -158,7 +158,7 @@ class App extends Component {
       }
     };
     // draw default if changing game type, else save last draw
-    const GameOver = () => {
+    const GameOver = function() {
       ballSpeedY = 0;
       paddle1Y = Height / 2 - paddleWidth / 2;
       paddle2Y = Height / 2 - paddleWidth / 2;
@@ -177,13 +177,13 @@ class App extends Component {
       }
       ctx.font = "14px Roboto Mono";
       ctx.fillText("Click anywhere to start a new game.", Width / 2, 200);
-      document.addEventListener("mousedown", () => {
+      document.addEventListener("mousedown", function() {
         gameOver = false;
         winner = "";
       });
     };
     // trigger 2 monkeys
-    $("#butt1").click(() => {
+    $("#butt1").click(function() {
       ballY = Height / 2;
       ballX = Width / 2;
       GameOver();
@@ -193,7 +193,7 @@ class App extends Component {
       $(".buttonRight").show();
     });
     // trigger AI
-    $("#butt2").click(() => {
+    $("#butt2").click(function() {
       GameOver();
       monkey = false;
       $(this).hide();
@@ -203,7 +203,7 @@ class App extends Component {
     // to block automatic start
     GameOver();
     // default 60fps
-    setInterval(() => {
+    setInterval(function() {
       if (gameOver === false) {
         moveAll();
         drawAll();
@@ -222,16 +222,23 @@ class App extends Component {
           height={gameHeight}
           id="gameCanvas"
         />
-        <div className="buttons buttonLeft">W</div>
-        <div className="buttons buttonLeft" id="buttonS">S</div>
         <div 
-          ref={(element) => {
-            this.btnRight = element
+          ref={(buttonW) => {this.buttonW = buttonW}}
+          className="buttons buttonLeft"
+        >W</div>
+        <div 
+          ref={(buttonS) => {this.buttonS = buttonS}}
+          className="buttons buttonLeft" id="buttonS"
+          >S</div>
+        <div 
+          ref={(buttonUp) => {
+            this.buttonUp = buttonUp
           }}
+          // needed to add btnRight ref
           className="buttons buttonRight" id="buttonUp"
           >Up</div>
         <div 
-          ref={(element) => {this.btnRight = element}}
+          ref={(btnRight) => {this.btnRight = btnRight}}
           className="buttons buttonRight"
         >Down</div>
         <button 
