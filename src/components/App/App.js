@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './style.css';
 import $ from "jquery";
 
 let gameWidth = document.documentElement.clientWidth,
